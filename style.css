@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  margin:0; padding:0;
+  background: #f2f2f2;
+  /* Optional professional background
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  */
+}
+
+.site-header {
+  background:#1e6fa3; color:#fff; padding:18px 12px; text-align:center;
+}
+.site-header h1 { margin:0; font-size:22px; }
+
+.login-form {
+  width:320px; margin:60px auto; padding:24px; background:rgba(255,255,255,0.95);
+  border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.12); text-align:center;
+}
+.login-form input { width:92%; padding:10px; margin:10px 0; border-radius:6px; border:1px solid #ccc; }
+.login-form button { padding:10px 18px; background:#1e6fa3; color:#fff; border:none; border-radius:6px; cursor:pointer; }
+.login-form .hint { color:#666; font-size:13px; margin-top:8px; }
+
+.dashboard { max-width:900px; margin:30px auto; padding:20px; }
+.profile { background:white; padding:16px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.08); margin-bottom:20px; }
+.profile h2 { margin:0 0 6px 0; }
+.profile p { margin:2px 0; color:#555; }
+.profile button { margin-top:10px; }
+
+.courses-section { background:white; padding:16px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.08); }
+.courses-section h3,h4 { margin-top:0; }
+table { width:100%; border-collapse:collapse; margin-top:12px; }
+th, td { padding:8px 10px; border-bottom:1px solid #e6e6e6; text-align:left; }
+th { background:#f8f9fb; color:#333; }
+
+.btn-small { padding:6px 8px; border-radius:6px; border:none; background:#1e6fa3; color:#fff; margin-right:6px; cursor:pointer; font-size:13px; }
+.btn-danger { background:#d9534f; }
+
+#addCourseForm input { width:calc(50% - 8px); padding:8px; margin:8px 4px; border-radius:6px; border:1px solid #ccc; }
+#addCourseForm button { display:block; margin:8px auto; padding:8px 14px; background:#1e6fa3; color:white; border-radius:6px; border:none; cursor:pointer; }
+
+@media screen and (max-width:600px) {
+  .login-form { width:92%; margin:30px auto; }
+  .dashboard { padding:10px; margin:10px; }
+  #addCourseForm input { width:100%; margin:6px 0; }
+}
