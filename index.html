@@ -48,7 +48,7 @@
     localStorage.setItem('students', JSON.stringify(sample));
   }
 })();
-
+<script>
 function login() {
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
@@ -112,7 +112,6 @@ if (!localStorage.getItem("students")) {
 
   localStorage.setItem("students", JSON.stringify(students));
 }
-
 /* ===== LOGIN FUNCTION ===== */
 function login() {
   const email = document.getElementById("email").value;
