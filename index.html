@@ -83,10 +83,48 @@ function login() {
       ]
     };
     localStorage.setItem('students', JSON.stringify(students));
-    localStorage.setItem('currentUser', email);
+localStorage.setItem("currentStudent", email);
     alert("Account created. Redirecting to your dashboard...");
     window.location.href = 'dashboard.html';
     return false;
+  }
+<script>
+/* ===== DEFAULT STUDENT ACCOUNT ===== */
+if (!localStorage.getItem("students")) {
+  const students = {
+    "student@school.com": {
+      name: "Default Student",
+      age: 16,
+      password: "portal123",
+      courses: [
+        { name: "Mathematics", grade: 9 },
+        { name: "English Language", grade: 9 },
+        { name: "Physics", grade: 9 },
+        { name: "Chemistry", grade: 9 },
+        { name: "Biology", grade: 9 },
+        { name: "Computer Science", grade: 9 },
+        { name: "Civic Education", grade: 9 },
+        { name: "Economics", grade: 9 },
+        { name: "Geography", grade: 9 }
+      ]
+    }
+  };
+
+  localStorage.setItem("students", JSON.stringify(students));
+}
+
+/* ===== LOGIN FUNCTION ===== */
+function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const students = JSON.parse(localStorage.getItem("students")) || {};
+
+  if (students[email] && students[email].password === password) {
+    localStorage.setItem("currentStudent", email);
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Wrong email or password!");
   }
 }
 </script>
