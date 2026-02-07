@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benedict Savage University Portal</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * { box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero {
+      height: 100vh;
+      background-image: url("images/university-bg.jpg");
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+    }
+
+    .login-card {
+      position: relative;
+      background: white;
+      width: 340px;
+      padding: 35px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      z-index: 2;
+    }
+
+    .login-card h1 {
+      margin: 0;
+      color: #182848;
+      font-size: 22px;
+    }
+
+    .login-card p {
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .login-card input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .login-card button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #4B6CB7, #182848);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .login-card button:hover {
+      opacity: 0.9;
+    }
+
+    #error {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .scroll-down {
+      color: white;
+      margin-top: 25px;
+      z-index: 2;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="overlay"></div>
+
+    <div class="login-card">
+      <h1>Benedict Savage University</h1>
+      <p>Student Portal Login</p>
+
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="Student Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Log In</button>
+        <div id="error"></div>
+      </form>
+    </div>
+
+    <div class="scroll-down">
+      <i class="fa-solid fa-angle-down"></i> Scroll Down
+    </div>
+  </section>
+
+  <!-- ✅ LOGIN SCRIPT -->
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const errorMsg = document.getElementById("error");
+
+    // DEFAULT ACCOUNT
+    const validEmail = "student@bsu.com";
+    const validPassword = "password123";
+
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (email === validEmail && password === validPassword) {
+        window.location.href = "dashboard.html";
+      } else {
+        errorMsg.textContent = "Invalid email or password!";
+      }
+    });
+  </script>
+
+</body<!-- ================= FEATURES & ADMISSION ================= -->
+<section style="padding:60px 20px; background:#f4f6f9;">
+  <div style="
+    max-width:900px;
+    margin:auto;
+    background:#ffffff;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  ">
+
+    <h2 style="color:#182848;">Admission Requirements</h2>
+    <p style="line-height:1.7;">
+      Candidates seeking admission into
+      <strong>Benedict Savage University</strong>
+      must possess a minimum of
+      <strong>five (5) credit passes in one sitting</strong>
+      in relevant subjects.
+    </p>
+
+    <h2 style="color:#182848; margin-top:30px;">Portal Features</h2>
+    <ul style="list-style:none; padding:0; line-height:1.8;">
+      <li>🎓 Access to Courses & Grades</li>
+      <li>📊 GPA & Academic Performance Tracking</li>
+      <li>👤 Personalized Student Dashboard</li>
+      <li>🔔 Announcements & Notifications</li>
+      <li>🔐 Secure Student Login System</li>
+    </ul>
+
+    <h2 style="color:#182848; margin-top:30px;">About the University</h2>
+    <p style="line-height:1.7;">
+      Benedict Savage University is a modern institution
+      committed to academic excellence, innovation, and
+      student success. This portal is designed to give
+      students transparent and easy access to their
+      academic information.
+    </p>
+
+  </div>
+</section>
+</html>
