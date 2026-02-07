@@ -3,125 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Student Portal - Dashboard</title>
+  <title>Benedict Savage University - Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="site-header">
-  <h1>My Student Portal</h1>
-</header>
+  <!-- Background overlay -->
+  <div class="overlay"></div>
 
-<div class="dashboard">
-  <div class="profile">
-    <h2 id="welcomeName">Welcome</h2>
-    <p id="emailText"></p>
-    <p id="ageText"></p>
-    <button class="btn-small" onclick="logout()">Logout</button>
+  <header class="school-header">
+    <h1>Benedict Savage University</h1>
+    <p>Student Dashboard</p>
+  </header>
+
+  <div class="dashboard-container">
+    <h2>Welcome, <span id="name"></span></h2>
+    <p>Age: <span id="age"></span></p>
+
+    <h3>Your Courses & Grades</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Grade</th>
+        </tr>
+      </thead>
+      <tbody id="coursesTable">
+        <!-- Courses will be injected here -->
+      </tbody>
+    </table>
   </div>
 
-  <section class="courses-section">
-    <h3>Your Courses & Grades</h3>
-    <table id="coursesTable">
-      <thead>
-        <tr><th>Course</th><th>Grade</th><th>Actions</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+  <script>
+    const email = localStorage.getItem("currentStudent");
+    const students = JSON.parse(localStorage.getItem("students"));
+    const student = students[email];
 
-    <h4>Add / Update Course</h4>
-    <form id="addCourseForm" onsubmit="return addOrUpdateCourse()">
-      <input type="text" id="courseName" placeholder="Course name" required>
-      <input type="number" id="courseGrade" placeholder="Grade (1-9)" min="1" max="9" required>
-      <input type="hidden" id="editIndex" value="-1">
-      <button type="submit">Save Course</button>
-    </form>
-  </section>
-</div>
+    document.getElementById("name").innerText = student.name;
+    document.getElementById("age").innerText = student.age;
 
-<script>
-const currentUser = localStorage.getItem('currentUser');
-if(!currentUser) window.location.href = 'index.html';
+    const tbody = document.getElementById("coursesTable");
+    student.courses.forEach(course => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${course.name}</td><td>${course.grade}</td>`;
+      tbody.appendChild(tr);
+    });
+  </script>
 
-function loadDashboard() {
-  let students = JSON.parse(localStorage.getItem('students') || '{}');
-  const user = students[currentUser];
-  document.getElementById('welcomeName').innerText = `Welcome, ${user.name}`;
-  document.getElementById('emailText').innerText = `Email: ${currentUser}`;
-  document.getElementById('ageText').innerText = `Age: ${user.age}`;
-  renderCourses(user.courses);
-}
-
-function renderCourses(courses) {
-  const tbody = document.querySelector('#coursesTable tbody');
-  tbody.innerHTML = '';
-  courses.forEach((c, idx) => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${escapeHtml(c.name)}</td>
-      <td>${escapeHtml(String(c.grade))}</td>
-      <td>
-        <button class="btn-small" onclick="startEdit(${idx})">Edit</button>
-        <button class="btn-small btn-danger" onclick="deleteCourse(${idx})">Delete</button>
-      </td>
-    `;
-    tbody.appendChild(tr);
-  });
-}
-
-function addOrUpdateCourse() {
-  const name = document.getElementById('courseName').value.trim();
-  const grade = parseInt(document.getElementById('courseGrade').value, 10);
-  const editIndex = parseInt(document.getElementById('editIndex').value, 10);
-
-  if(!name || !grade) { alert("Enter course & grade"); return false; }
-  if(grade < 1 || grade > 9) { alert("Grade must be 1-9"); return false; }
-
-  let students = JSON.parse(localStorage.getItem('students'));
-  const user = students[currentUser];
-
-  if(editIndex >= 0) user.courses[editIndex] = { name, grade };
-  else user.courses.push({ name, grade });
-
-  students[currentUser] = user;
-  localStorage.setItem('students', JSON.stringify(students));
-
-  document.getElementById('courseName').value = '';
-  document.getElementById('courseGrade').value = '';
-  document.getElementById('editIndex').value = -1;
-  renderCourses(user.courses);
-  return false;
-}
-
-function startEdit(index) {
-  let students = JSON.parse(localStorage.getItem('students'));
-  let user = students[currentUser];
-  document.getElementById('courseName').value = user.courses[index].name;
-  document.getElementById('courseGrade').value = user.courses[index].grade;
-  document.getElementById('editIndex').value = index;
-  window.scrollTo({top: document.body.scrollHeight, behavior:'smooth'});
-}
-
-function deleteCourse(index) {
-  if(!confirm("Delete this course?")) return;
-  let students = JSON.parse(localStorage.getItem('students'));
-  let user = students[currentUser];
-  user.courses.splice(index,1);
-  students[currentUser] = user;
-  localStorage.setItem('students', JSON.stringify(students));
-  renderCourses(user.courses);
-}
-
-function logout() {
-  localStorage.removeItem('currentUser');
-  window.location.href = 'index.html';
-}
-
-function escapeHtml(text) {
-  return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-loadDashboard();
-</script>
 </body>
 </html>

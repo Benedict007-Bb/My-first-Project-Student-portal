@@ -3,129 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Student Portal</title>
+  <title>Benedict Savage University Portal</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="site-header">
-  <h1>My Student Portal</h1>
-</header>
+  <!-- Background overlay effect -->
+  <div class="overlay"></div>
 
-<div class="login-form">
-  <h2>Login</h2>
-  <form onsubmit="return login()">
-    <input type="email" id="email" placeholder="Enter email" required>
-    <input type="password" id="password" placeholder="Enter password" required>
-    <input type="number" id="age" placeholder="Enter your age" required>
-    <button type="submit">Login</button>
-  </form>
-  <p class="hint">New? Enter your email, password, and age to create an account.</p>
-</div>
+  <!-- Landing / Login -->
+  <div class="login-container">
+    <header class="school-header">
+      <h1>Benedict Savage University</h1>
+      <p>Student Portal Login</p>
+    </header>
 
-<script>
-// Initialize sample students
-(function initSampleData(){
-  if(!localStorage.getItem('students')) {
-    const sample = {
-      "student@example.com": {
-        name: "Student Example",
-        age: 16,
-        password: "12345678",
-        courses: [
-          { name: "Mathematics", grade: 9 },
-          { name: "English", grade: 9 },
-          { name: "Physics", grade: 8 },
-          { name: "Chemistry", grade: 9 },
-          { name: "Biology", grade: 8 },
-          { name: "History", grade: 9 },
-          { name: "Geography", grade: 8 },
-          { name: "Computer Science", grade: 9 },
-          { name: "Physical Education", grade: 9 }
-        ]
-      }
-    };
-    localStorage.setItem('students', JSON.stringify(sample));
-  }
-})();
-<script>
-function login() {
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
-  const age = parseInt(document.getElementById('age').value, 10);
+    <form id="loginForm" onsubmit="return login()">
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
 
-  if(!email || !password || !age) { alert("Fill all fields"); return false; }
-
-  let students = JSON.parse(localStorage.getItem('students') || '{}');
-
-  if(students[email]) {
-    if(students[email].password === password) {
-      localStorage.setItem('currentUser', email);
-      window.location.href = 'dashboard.html';
-      return false;
-    } else { alert("Incorrect password"); return false; }
-  } else {
-    const nameFromEmail = email.split('@')[0];
-    students[email] = {
-      name: nameFromEmail.charAt(0).toUpperCase() + nameFromEmail.slice(1),
-      age: age,
-      password: password,
-      courses: [
-        { name: "Mathematics", grade: 9 },
-        { name: "English", grade: 9 },
-        { name: "Physics", grade: 8 },
-        { name: "Chemistry", grade: 9 },
-        { name: "Biology", grade: 8 },
-        { name: "History", grade: 9 },
-        { name: "Geography", grade: 8 },
-        { name: "Computer Science", grade: 9 },
-        { name: "Physical Education", grade: 9 }
-      ]
-    };
-    localStorage.setItem('students', JSON.stringify(students));
-localStorage.setItem("currentStudent", email);
-    alert("Account created. Redirecting to your dashboard...");
-    window.location.href = 'dashboard.html';
-    return false;
-  }
-<script>
-/* ===== DEFAULT STUDENT ACCOUNT ===== */
-if (!localStorage.getItem("students")) {
-  const students = {
-    "student@school.com": {
-      name: "Default Student",
-      age: 16,
-      password: "portal123",
-      courses: [
-        { name: "Mathematics", grade: 9 },
-        { name: "English Language", grade: 9 },
-        { name: "Physics", grade: 9 },
-        { name: "Chemistry", grade: 9 },
-        { name: "Biology", grade: 9 },
-        { name: "Computer Science", grade: 9 },
-        { name: "Civic Education", grade: 9 },
-        { name: "Economics", grade: 9 },
-        { name: "Geography", grade: 9 }
-      ]
+  <!-- JS -->
+  <script>
+    // ===== DEFAULT STUDENT ACCOUNT =====
+    if (!localStorage.getItem("students")) {
+      const students = {
+        "student@school.com": {
+          name: "Default Student",
+          age: 16,
+          password: "portal123",
+          courses: [
+            { name: "Mathematics", grade: 9 },
+            { name: "English Language", grade: 9 },
+            { name: "Physics", grade: 9 },
+            { name: "Chemistry", grade: 9 },
+            { name: "Biology", grade: 9 },
+            { name: "Computer Science", grade: 9 },
+            { name: "Civic Education", grade: 9 },
+            { name: "Economics", grade: 9 },
+            { name: "Geography", grade: 9 }
+          ]
+        }
+      };
+      localStorage.setItem("students", JSON.stringify(students));
     }
-  };
 
-  localStorage.setItem("students", JSON.stringify(students));
-}
-/* ===== LOGIN FUNCTION ===== */
-function login() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+    // ===== LOGIN FUNCTION =====
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-  const students = JSON.parse(localStorage.getItem("students")) || {};
+      const students = JSON.parse(localStorage.getItem("students")) || {};
 
-  if (students[email] && students[email].password === password) {
-    localStorage.setItem("currentStudent", email);
-    window.location.href = "dashboard.html";
-  } else {
-    alert("Wrong email or password!");
-  }
-}
-</script>
+      if (students[email] && students[email].password === password) {
+        localStorage.setItem("currentStudent", email);
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Wrong email or password!");
+      }
+      return false; // prevent page reload
+    }
+  </script>
+
 </body>
 </html>
