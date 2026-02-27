@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Royal Stitch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background: #2e1a47;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(to right, #3d2068, #5a2e91);
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .hero button {
+            padding: 10px 20px;
+            border: none;
+            background: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        section {
+            padding: 60px 40px;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        #featured {
+            text-align: center;
+        }
+
+        .products {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            width: 200px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form input, form textarea {
+            padding: 10px;
+        }
+
+        form button {
+            padding: 10px;
+            background: #3d2068;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            background: #2e1a47;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>Royal Stitch</h2>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#featured">Collections</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <h1>Fashion For Sale</h1>
+    <p>Discover elegant fashion designed with excellence.</p>
+    <button>Explore Collection</button>
+</section>
+
+<section id="featured">
+    <h2>Featured Products</h2>
+
+    <div class="products">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="">
+            <h4>Luxury Handbag</h4>
+            <p>$120</p>
+        </div>
+
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="">
+            <h4>Royal Gown</h4>
+            <p>$250</p>
+        </div>
+
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="">
+            <h4>Classic Suit</h4>
+            <p>$180</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2 style="text-align:center;">Contact Us</h2>
+
+    <form>
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea rows="4" placeholder="Your Message"></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 Royal Stitch. All rights reserved.</p>
+</footer>
+
+<!-- CONNECT JAVASCRIPT -->
+<script src="script.js"></script>
+
+</body>
+</html>
